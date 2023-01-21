@@ -22,8 +22,7 @@ public class Burger {
         ingredients.add(ingredient);
     }
 
-    public void removeIngredient(int index) {
-        ingredients.remove(index);
+    public void removeIngredient(int index) {ingredients.remove(index);
     }
 
     public void moveIngredient(int index, int newIndex) {
