@@ -1,9 +1,9 @@
 package tests;
 
-import org.junit.Assert;
 import org.junit.Test;
 import praktikum.Ingredient;
-import static org.junit.Assert.*;
+
+import static org.junit.Assert.assertEquals;
 import static praktikum.IngredientType.SAUCE;
 
 public class IngredientTest {

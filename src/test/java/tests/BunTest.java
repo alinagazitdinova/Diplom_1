@@ -2,9 +2,8 @@ package tests;
 
 import org.junit.Test;
 import praktikum.Bun;
-import praktikum.Database;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class BunTest {
 
