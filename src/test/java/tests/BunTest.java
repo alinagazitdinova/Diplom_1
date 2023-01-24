@@ -1,21 +1,46 @@
 package tests;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import praktikum.Bun;
 
 import static org.junit.Assert.assertEquals;
 
+@RunWith(Parameterized.class)
 public class BunTest {
+    private final String name;
+    private final float price;
+
+    public BunTest(String name, float price) {
+        this.name = name;
+        this.price = price;
+    }
+
+    @Parameterized.Parameters(name = "Набор параметров {index}")
+    public static Object[][] getData() {
+        return new Object[][]{
+                {"Плюшка", 100},
+                {"Булка", 30},
+                {"", 0},
+                {null, null}, //тест должен упасть
+                {"Плююююююююююююююююююююююююююююююююююююююююююююшка", 30},
+                {"45897", 20},
+                {":?*())__)((**", 20},
+                {"Плюшка", 0.7689500498789050987489}, //тест должен упасть
+
+        };
+    }
 
     @Test
     public void testGetName() {
-        Bun bun = new Bun("Плюшка", 100);
-        assertEquals("Плюшка", bun.getName());
+        Bun bun = new Bun(name, price);
+        assertEquals(name, bun.getName());
     }
 
     @Test
     public void getPrice() {
-        Bun bun = new Bun("Плюшка", 100);
-        assertEquals(100, bun.getPrice(), 0);
+        Bun bun = new Bun(name, price);
+        assertEquals(price, bun.getPrice(), 0);
     }
 }
