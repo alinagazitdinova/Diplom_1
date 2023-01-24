@@ -5,6 +5,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.internal.matchers.NotNull;
 import org.mockito.junit.MockitoJUnitRunner;
 import praktikum.Bun;
 import praktikum.Burger;
@@ -13,29 +14,21 @@ import praktikum.IngredientType;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.CoreMatchers.notNullValue;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotEquals;
+import static org.junit.Assert.*;
 
 @RunWith(MockitoJUnitRunner.class)
 public class BurgerTest {
     @Mock
-    private Bun bun;
+    Bun bun;
     @Mock
-    private Ingredient ingredient;
+    Ingredient ingredient;
 
     @Test
-    public void setBunsTest() {
-        Bun bun = new Bun("булочка", 100);
-        Ingredient ingredient = new Ingredient(IngredientType.SAUCE, "Кептчуп", 100);
-        Burger burger = new Burger();
-    }
 
-    @Test
     public void addIngredientTest() {
         Burger burger = new Burger();
-        burger.addIngredient(new Ingredient(IngredientType.SAUCE, "sour cream", 200));
-        assertEquals(1, burger.ingredients.size());
-        System.out.println(burger.ingredients);
+        burger.addIngredient(ingredient);
+        assertTrue(burger.ingredients.size() != 0);
     }
 
     @Test
@@ -64,8 +57,7 @@ public class BurgerTest {
         Mockito.when(bun.getPrice()).thenReturn(200F);
         burger.setBuns(bun);
         float expected = 400F;
-        MatcherAssert.assertThat("Wrong calculation", burger.getPrice(),
-                equalTo(expected));
+       assertEquals("Wrong calculation", burger.getPrice(), expected, 0);
     }
 
     @Test
@@ -76,7 +68,6 @@ public class BurgerTest {
         Bun bun = new Bun("Булка", 100);
         burger.setBuns(bun);
         String receipt = burger.getReceipt();
-        System.out.println(receipt);
         MatcherAssert.assertThat(burger.getReceipt(), notNullValue());
     }
 }

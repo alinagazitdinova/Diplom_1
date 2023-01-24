@@ -3,15 +3,17 @@ package tests;
 import org.junit.Test;
 import praktikum.IngredientType;
 
+import static org.junit.Assert.assertEquals;
+
 public class IngredientTypeTest {
 
     @Test
-    public void values() {
-        assert IngredientType.FILLING != null;
+    public void selectSauceTest() {
+        assertEquals(IngredientType.valueOf("SAUCE"), IngredientType.SAUCE);
     }
 
     @Test
-    public void valueOf() {
-        assert IngredientType.SAUCE != null;
+    public void selectFillingTest() {
+        assertEquals(IngredientType.valueOf("FILLING"), IngredientType.FILLING);
     }
 }
