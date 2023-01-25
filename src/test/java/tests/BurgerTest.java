@@ -1,19 +1,15 @@
 package tests;
 
-import org.hamcrest.MatcherAssert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.Mockito;
-import org.mockito.internal.matchers.NotNull;
 import org.mockito.junit.MockitoJUnitRunner;
 import praktikum.Bun;
 import praktikum.Burger;
 import praktikum.Ingredient;
 import praktikum.IngredientType;
 
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.*;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -57,7 +53,7 @@ public class BurgerTest {
         Mockito.when(bun.getPrice()).thenReturn(200F);
         burger.setBuns(bun);
         float expected = 400F;
-       assertEquals("Wrong calculation", burger.getPrice(), expected, 0);
+        assertEquals("Wrong calculation", burger.getPrice(), expected, 0);
     }
 
     @Test
@@ -67,7 +63,7 @@ public class BurgerTest {
         burger.addIngredient(new Ingredient(IngredientType.FILLING, "cutlet", 100));
         Bun bun = new Bun("Булка", 100);
         burger.setBuns(bun);
-        String receipt = burger.getReceipt();
-        MatcherAssert.assertThat(burger.getReceipt(), notNullValue());
+        String expectedReceipt = burger.getReceipt();
+        assertEquals(expectedReceipt, burger.getReceipt());
     }
 }
